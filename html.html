@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Belajar HTML & CSS Dasar - Panduan Lengkap untuk Pemula">
+  <title>Belajar HTML & CSS | Panduan Lengkap Pemula</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  
+  <!-- Syntax Highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: #fafafa;
+      color: #1a1a1a;
+      line-height: 1.6;
+    }
+
+    .navbar {
+      background: #ffffff;
+      border-bottom: 1px solid #eaeaea;
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-container {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: #2563eb;
+      letter-spacing: -0.3px;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 0.9rem;
+      background: #f3f4f6;
+      color: #374151;
+      text-decoration: none;
+      border-radius: 20px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+
+    .back-btn:hover {
+      background: #e5e7eb;
+    }
+
+    .container {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .blog-header {
+      margin-bottom: 2.5rem;
+    }
+
+    .blog-category {
+      display: inline-block;
+      background: #eef2ff;
+      color: #2563eb;
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .blog-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #111827;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+    }
+
+    .blog-meta {
+      display: flex;
+      gap: 1.2rem;
+      color: #6b7280;
+      font-size: 0.85rem;
+      border-bottom: 1px solid #eaeaea;
+      padding-bottom: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .blog-content {
+      background: transparent;
+    }
+
+    .blog-content h2 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin: 2rem 0 1rem;
+      color: #111827;
+      letter-spacing: -0.01em;
+      padding-top: 0.5rem;
+    }
+
+    .blog-content h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.75rem;
+      color: #1f2937;
+    }
+
+    .blog-content p {
+      margin-bottom: 1rem;
+      color: #374151;
+      font-size: 1rem;
+    }
+
+    .blog-content ul, .blog-content ol {
+      margin: 0.75rem 0 1rem 1.5rem;
+      color: #374151;
+    }
+
+    .blog-content li {
+      margin-bottom: 0.4rem;
+    }
+
+    .info-box {
+      background: #f8fafc;
+      border-left: 4px solid #3b82f6;
+      padding: 1rem 1.2rem;
+      margin: 1.5rem 0;
+      border-radius: 8px;
+    }
+
+    .tip-box {
+      background: #fefce8;
+      border-left: 4px solid #eab308;
+      padding: 1rem 1.2rem;
+      margin: 1.5rem 0;
+      border-radius: 8px;
+    }
+
+    .warning-box {
+      background: #fef2f2;
+      border-left: 4px solid #dc2626;
+      padding: 1rem 1.2rem;
+      margin: 1.5rem 0;
+      border-radius: 8px;
+    }
+
+    .info-box p, .tip-box p, .warning-box p {
+      margin-bottom: 0;
+    }
+
+    .info-box strong, .tip-box strong, .warning-box strong {
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    pre {
+      background: #1e1e2f;
+      padding: 1.2rem;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 1.2rem 0;
+    }
+
+    code {
+      font-family: 'SF Mono', 'Menlo', 'Monaco', 'Cascadia Code', monospace;
+      font-size: 0.85rem;
+    }
+
+    :not(pre) > code {
+      background: #f0f2f5;
+      padding: 0.2rem 0.4rem;
+      border-radius: 5px;
+      font-size: 0.85rem;
+      color: #d14;
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+      margin: 1.2rem 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    th, td {
+      padding: 0.7rem 0.8rem;
+      text-align: left;
+      border: 1px solid #e2e8f0;
+    }
+
+    th {
+      background: #f1f5f9;
+      font-weight: 600;
+    }
+
+    .code-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1.2rem 0;
+    }
+
+    .code-compare pre {
+      margin: 0;
+    }
+
+    .quiz-section {
+      background: #f9f9fb;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin: 2rem 0 1rem;
+    }
+
+    .quiz-question {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #edf2f7;
+    }
+
+    .quiz-question p {
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+    }
+
+    .quiz-option {
+      display: block;
+      margin: 0.4rem 0;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .quiz-option input {
+      margin-right: 0.6rem;
+    }
+
+    .quiz-btn {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 30px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 0.5rem;
+    }
+
+    .quiz-btn:hover {
+      background: #1d4ed8;
+    }
+
+    .quiz-result {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: #f1f5f9;
+      border-radius: 12px;
+      display: none;
+      font-size: 0.9rem;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: #6b7280;
+      font-size: 0.8rem;
+      border-top: 1px solid #eaeaea;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 1.2rem;
+      }
+      .blog-title {
+        font-size: 1.7rem;
+      }
+      .code-compare {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="#" class="logo">Belajar HTML & CSS</a>
+    <a href="/" class="back-btn">← Kembali</a>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="blog-header">
+    <span class="blog-category">Web Development</span>
+    <h1 class="blog-title">Belajar HTML & CSS Dasar: Panduan Lengkap untuk Pemula</h1>
+    <div class="blog-meta">
+      <span>📅 15 Maret 2024</span>
+      <span>⏱️ 20 menit baca</span>
+      <span>📖 Level: Pemula</span>
+    </div>
+  </div>
+
+  <div class="blog-content">
+    <p>HTML dan CSS adalah fondasi dari setiap website yang Anda lihat di internet. HTML bertugas membangun struktur, sementara CSS membuat tampilan menjadi menarik. Artikel ini akan membawa Anda dari nol hingga mampu membuat halaman web sendiri.</p>
+
+    <div class="info-box">
+      <strong>📌 Apa itu HTML dan CSS?</strong>
+      <p><strong>HTML (HyperText Markup Language)</strong> adalah bahasa markup yang membangun kerangka halaman web. <strong>CSS (Cascading Style Sheets)</strong> adalah bahasa yang mengatur tampilan: warna, ukuran, tata letak, dan efek visual.</p>
+    </div>
+
+    <h2>1. Struktur Dasar HTML</h2>
+    <p>Setiap dokumen HTML memiliki struktur yang sama. Berikut adalah template dasar yang wajib Anda ketahui:</p>
+    <pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang="id"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Judul Halaman&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Selamat Datang&lt;/h1&gt;
+    &lt;p&gt;Ini adalah paragraf pertama saya.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <div class="tip-box">
+      <strong>💡 Penjelasan Singkat</strong>
+      <p><code>&lt;!DOCTYPE html&gt;</code> memberitahu browser bahwa ini adalah HTML5. <code>&lt;head&gt;</code> berisi metadata dan judul. <code>&lt;body&gt;</code> adalah tempat konten yang terlihat oleh pengguna.</p>
+    </div>
+
+    <h2>2. Tag HTML yang Paling Sering Digunakan</h2>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <th>Tag</th><th>Fungsi</th><th>Contoh Penggunaan</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>&lt;h1&gt; - &lt;h6&gt;</code></td><td>Heading / judul</td><td><code>&lt;h1&gt;Judul Utama&lt;/h1&gt;</code></td></tr>
+          <tr><td><code>&lt;p&gt;</code></td><td>Paragraf</td><td><code>&lt;p&gt;Teks paragraf...&lt;/p&gt;</code></td></tr>
+          <tr><td><code>&lt;a&gt;</code></td><td>Hyperlink</td><td><code>&lt;a href="https://google.com"&gt;Google&lt;/a&gt;</code></td></tr>
+          <tr><td><code>&lt;img&gt;</code></td><td>Gambar</td><td><code>&lt;img src="foto.jpg" alt="deskripsi"&gt;</code></td></tr>
+          <tr><td><code>&lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;</code></td><td>Daftar (list)</td><td><code>&lt;ul&gt;&lt;li&gt;Item 1&lt;/li&gt;&lt;/ul&gt;</code></td></tr>
+          <tr><td><code>&lt;div&gt;</code></td><td>Container / pembungkus</td><td>Mengelompokkan elemen</td></tr>
+          <tr><td><code>&lt;span&gt;</code></td><td>Inline container</td><td>Styling teks sebagian</td></tr>
+          <tr><td><code>&lt;button&gt;</code></td><td>Tombol</td><td><code>&lt;button&gt;Klik Saya&lt;/button&gt;</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Contoh Penggunaan List dan Link</h3>
+    <pre><code class="html">&lt;!-- Unordered List --&gt;
+&lt;ul&gt;
+    &lt;li&gt;Belajar HTML&lt;/li&gt;
+    &lt;li&gt;Belajar CSS&lt;/li&gt;
+    &lt;li&gt;Belajar JavaScript&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- Ordered List --&gt;
+&lt;ol&gt;
+    &lt;li&gt;Buka text editor&lt;/li&gt;
+    &lt;li&gt;Buat file index.html&lt;/li&gt;
+    &lt;li&gt;Mulai menulis kode&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;!-- Link dengan target blank --&gt;
+&lt;a href="https://www.w3schools.com" target="_blank"&gt;
+    Kunjungi W3Schools
+&lt;/a&gt;</code></pre>
+
+    <h2>3. CSS: Cara Menambahkan dan Sintaks Dasar</h2>
+    <p>Ada tiga cara menambahkan CSS ke HTML: Inline, Internal, dan External.</p>
+
+    <div class="code-compare">
+      <div>
+        <strong>Inline CSS</strong>
+        <pre><code class="html">&lt;h1 style="color: blue;"&gt;Teks Biru&lt;/h1&gt;</code></pre>
+      </div>
+      <div>
+        <strong>Internal CSS</strong>
+        <pre><code class="html">&lt;style&gt;
+    h1 { color: blue; }
+&lt;/style&gt;</code></pre>
+      </div>
+    </div>
+
+    <pre><code class="html">&lt;!-- External CSS (yang paling direkomendasikan) --&gt;
+&lt;link rel="stylesheet" href="style.css"&gt;
+
+/* File style.css */
+h1 {
+    color: blue;
+    font-size: 32px;
+    text-align: center;
+}</code></pre>
+
+    <h3>Selektor CSS yang Wajib Diketahui</h3>
+    <div class="table-wrapper">
+      <table>
+        <thead><tr><th>Selektor</th><th>Contoh</th><th>Penjelasan</th></tr></thead>
+        <tbody>
+          <tr><td>Elemen</td><td><code>p { }</code></td><td>Memilih semua tag &lt;p&gt;</td></tr>
+          <tr><td>Class</td><td><code>.card { }</code></td><td>Memilih elemen dengan class="card"</td></tr>
+          <tr><td>ID</td><td><code>#header { }</code></td><td>Memilih elemen dengan id="header" (unik)</td></tr>
+          <tr><td>Universal</td><td><code>* { }</code></td><td>Memilih semua elemen</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>4. Properti CSS Penting</h2>
+    <div class="table-wrapper">
+      <table>
+        <thead><tr><th>Properti</th><th>Fungsi</th><th>Contoh Nilai</th></tr></thead>
+        <tbody>
+          <tr><td><code>color</code></td><td>Warna teks</td><td>red, #ff0000, rgb(255,0,0)</td></tr>
+          <tr><td><code>background-color</code></td><td>Warna latar</td><td>#f0f0f0, lightblue</td></tr>
+          <tr><td><code>font-size</code></td><td>Ukuran font</td><td>16px, 1.2rem, 1.2em</td></tr>
+          <tr><td><code>margin</code></td><td>Jarak luar</td><td>10px, 20px auto</td></tr>
+          <tr><td><code>padding</code></td><td>Jarak dalam</td><td>8px 16px</td></tr>
+          <tr><td><code>border</code></td><td>Garis tepi</td><td>1px solid #ccc</td></tr>
+          <tr><td><code>border-radius</code></td><td>Sudut melengkung</td><td>8px, 50% (lingkaran)</td></tr>
+          <tr><td><code>display</code></td><td>Tipe tampilan</td><td>block, inline, flex, grid</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>5. Flexbox: Layout Modern yang Wajib Dikuasai</h2>
+    <p>Flexbox menyederhanakan pembuatan layout responsif. Berikut contoh-contoh praktis:</p>
+
+    <h3>Flexbox Dasar</h3>
+    <pre><code class="css">.container {
+    display: flex;
+    justify-content: space-between; /* horizontal: start, center, space-between */
+    align-items: center;            /* vertical: center, flex-start, flex-end */
+    gap: 20px;                      /* jarak antar item */
+    flex-wrap: wrap;                /* membungkus jika layar kecil */
+}
+
+.item {
+    flex: 1;      /* semua item punya lebar sama */
+    padding: 16px;
+    background: #eef2ff;
+}</code></pre>
+
+    <h3>Contoh Navigasi dengan Flexbox</h3>
+    <pre><code class="html">&lt;!-- HTML --&gt;
+&lt;nav class="navbar"&gt;
+    &lt;div class="logo"&gt;MySite&lt;/div&gt;
+    &lt;ul class="nav-links"&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Beranda&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Tentang&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Kontak&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;
+
+/* CSS */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: #1f2937;
+    color: white;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+}</code></pre>
+
+    <div class="tip-box">
+      <strong>💡 Flexbox Properties yang Sering Dipakai</strong>
+      <p><code>flex-direction: row | column</code> — arah utama. <code>justify-content</code> — alignment horizontal. <code>align-items</code> — alignment vertikal. <code>gap</code> — jarak antar elemen.</p>
+    </div>
+
+    <h2>6. Membuat Website Sederhana (Studi Kasus)</h2>
+    <p>Mari praktikkan dengan membuat halaman profil sederhana.</p>
+
+    <pre><code class="html">&lt;!-- HTML --&gt;
+&lt;div class="profile-card"&gt;
+    &lt;img src="avatar.jpg" alt="Foto Profil" class="avatar"&gt;
+    &lt;h2&gt;Ahmad Fauzi&lt;/h2&gt;
+    &lt;p class="title"&gt;Web Developer Pemula&lt;/p&gt;
+    &lt;p&gt;Suka belajar hal baru dan berbagi ilmu.&lt;/p&gt;
+    &lt;div class="social"&gt;
+        &lt;a href="#"&gt;GitHub&lt;/a&gt;
+        &lt;a href="#"&gt;LinkedIn&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;button&gt;Hubungi Saya&lt;/button&gt;
+&lt;/div&gt;
+
+/* CSS */
+.profile-card {
+    max-width: 320px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+.title {
+    color: #6b7280;
+    margin-bottom: 1rem;
+}
+
+.social {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.social a {
+    text-decoration: none;
+    color: #2563eb;
+}
+
+button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+button:hover {
+    background: #1d4ed8;
+}</code></pre>
+
+    <h2>7. Responsive Design dengan Media Query</h2>
+    <p>Agar website tampil baik di semua perangkat (HP, tablet, desktop), gunakan media query.</p>
+    <pre><code class="css">/* Default untuk desktop */
+.container {
+    display: flex;
+    gap: 2rem;
+}
+
+/* Tablet: lebar kurang dari 768px */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+}
+
+/* HP: lebar kurang dari 480px */
+@media (max-width: 480px) {
+    body {
+        font-size: 14px;
+    }
+    .container {
+        padding: 1rem;
+    }
+}</code></pre>
+
+    <div class="info-box">
+      <strong>📱 Tips Responsive</strong>
+      <p>Gunakan unit relatif seperti <code>%, rem, vw, vh</code> daripada <code>px</code> untuk ukuran yang fleksibel. <code>flex-wrap: wrap</code> dan <code>grid</code> juga sangat membantu.</p>
+    </div>
+
+    <h2>8. Best Practices untuk Pemula</h2>
+    <ul>
+      <li><strong>Gunakan struktur folder yang rapi</strong> — pisahkan folder <code>css/</code>, <code>images/</code>, <code>js/</code></li>
+      <li><strong>Beri nama class yang bermakna</strong> — seperti <code>.card</code>, <code>.nav-menu</code>, bukan <code>.box1</code></li>
+      <li><strong>Gunakan CSS Reset</strong> — untuk menyamakan tampilan di semua browser</li>
+      <li><strong>Validasi kode</strong> — gunakan W3C Validator untuk memastikan tidak ada error</li>
+      <li><strong>Praktikkan dengan proyek kecil</strong> — landing page, portofolio, atau blog sederhana</li>
+    </ul>
+
+    <div class="warning-box">
+      <strong>⚠️ Kesalahan Umum Pemula</strong>
+      <p>1. Lupa menutup tag HTML. 2. Tidak menggunakan <code>alt</code> pada gambar. 3. Menggunakan ID berlebihan (lebih baik class). 4. Tidak responsive.</p>
+    </div>
+
+    <h2>9. Latihan Soal</h2>
+    <div class="quiz-section">
+      <h3 style="margin-bottom: 1rem;">Uji Pemahaman HTML & CSS</h3>
+      
+      <div class="quiz-question">
+        <p>1. Tag HTML apa yang digunakan untuk membuat hyperlink?</p>
+        <div class="quiz-options">
+          <label class="quiz-option"><input type="radio" name="q1" value="a"> A. &lt;link&gt;</label>
+          <label class="quiz-option"><input type="radio" name="q1" value="b"> B. &lt;a&gt;</label>
+          <label class="quiz-option"><input type="radio" name="q1" value="c"> C. &lt;href&gt;</label>
+          <label class="quiz-option"><input type="radio" name="q1" value="d"> D. &lt;url&gt;</label>
+        </div>
+      </div>
+
+      <div class="quiz-question">
+        <p>2. Properti CSS yang digunakan untuk mengubah warna teks adalah?</p>
+        <div class="quiz-options">
+          <label class="quiz-option"><input type="radio" name="q2" value="a"> A. background-color</label>
+          <label class="quiz-option"><input type="radio" name="q2" value="b"> B. text-color</label>
+          <label class="quiz-option"><input type="radio" name="q2" value="c"> C. color</label>
+          <label class="quiz-option"><input type="radio" name="q2" value="d"> D. font-color</label>
+        </div>
+      </div>
+
+      <div class="quiz-question">
+        <p>3. Apa fungsi dari <code>display: flex</code>?</p>
+        <div class="quiz-options">
+          <label class="quiz-option"><input type="radio" name="q3" value="a"> A. Membuat teks menjadi fleksibel</label>
+          <label class="quiz-option"><input type="radio" name="q3" value="b"> B. Membuat layout yang responsif dengan alignment mudah</label>
+          <label class="quiz-option"><input type="radio" name="q3" value="c"> C. Membuat animasi pada elemen</label>
+          <label class="quiz-option"><input type="radio" name="q3" value="d"> D. Mengubah ukuran font secara otomatis</label>
+        </div>
+      </div>
+
+      <div class="quiz-question">
+        <p>4. Manakah cara terbaik untuk menambahkan CSS yang direkomendasikan untuk proyek besar?</p>
+        <div class="quiz-options">
+          <label class="quiz-option"><input type="radio" name="q4" value="a"> A. Inline CSS</label>
+          <label class="quiz-option"><input type="radio" name="q4" value="b"> B. Internal CSS (tag &lt;style&gt;)</label>
+          <label class="quiz-option"><input type="radio" name="q4" value="c"> C. External CSS file terpisah</label>
+          <label class="quiz-option"><input type="radio" name="q4" value="d"> D. Semua sama saja</label>
+        </div>
+      </div>
+
+      <button class="quiz-btn" onclick="checkQuiz()">Periksa Jawaban</button>
+      <div class="quiz-result" id="quizResult"></div>
+    </div>
+
+    <h2>Kesimpulan</h2>
+    <p>HTML dan CSS adalah fondasi yang harus dikuasai oleh setiap web developer. Dengan memahami struktur HTML, properti CSS, dan Flexbox untuk layout, Anda sudah siap membuat website yang menarik dan responsif. Teruslah berlatih dengan proyek-proyek kecil seperti portofolio pribadi, halaman produk, atau blog sederhana.</p>
+    
+    <div class="info-box">
+      <strong>📚 Sumber Belajar Lanjutan</strong>
+      <ul style="margin-top: 0.3rem;">
+        <li>MDN Web Docs — Dokumentasi terlengkap dari Mozilla</li>
+        <li>W3Schools — Tutorial interaktif dengan live editor</li>
+        <li>CSS-Tricks — Artikel mendalam tentang CSS</li>
+        <li>FreeCodeCamp — Kursus gratis dengan sertifikat</li>
+        <li>YouTube: Web Programming UNPAS, Programmer Zaman Now</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <p>© 2024 · Belajar HTML & CSS | Panduan Lengkap untuk Pemula</p>
+</footer>
+
+<script>
+  hljs.highlightAll();
+
+  function checkQuiz() {
+    const q1 = document.querySelector('input[name="q1"]:checked');
+    const q2 = document.querySelector('input[name="q2"]:checked');
+    const q3 = document.querySelector('input[name="q3"]:checked');
+    const q4 = document.querySelector('input[name="q4"]:checked');
+    
+    let score = 0;
+    let results = [];
+    
+    if (q1 && q1.value === 'b') { score++; results.push('✓ Soal 1: Benar (tag &lt;a&gt;).'); }
+    else { results.push('✗ Soal 1: Jawaban benar adalah &lt;a&gt;.'); }
+    
+    if (q2 && q2.value === 'c') { score++; results.push('✓ Soal 2: Benar (color).'); }
+    else { results.push('✗ Soal 2: Properti color untuk warna teks.'); }
+    
+    if (q3 && q3.value === 'b') { score++; results.push('✓ Soal 3: Benar (flex untuk layout responsif).'); }
+    else { results.push('✗ Soal 3: display: flex memudahkan layout dan alignment.'); }
+    
+    if (q4 && q4.value === 'c') { score++; results.push('✓ Soal 4: Benar (External CSS terbaik untuk proyek besar).'); }
+    else { results.push('✗ Soal 4: External CSS lebih terstruktur dan reusable.'); }
+    
+    const resultDiv = document.getElementById('quizResult');
+    resultDiv.style.display = 'block';
+    resultDiv.innerHTML = `<strong>Skor: ${score}/4</strong><br><br>${results.join('<br>')}<br>${score === 4 ? '🎉 Hebat! Anda siap membuat website sendiri!' : '📖 Pelajari ulang materi yang masih kurang dipahami.'}`;
+  }
+</script>
+
+</body>
+</html>

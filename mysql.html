@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Belajar MySQL - Panduan Lengkap Database untuk Pemula">
+  <title>Belajar MySQL | Panduan Database Lengkap</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  
+  <!-- Syntax Highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: #fafafa;
+      color: #1a1a1a;
+      line-height: 1.6;
+    }
+
+    /* Navbar sederhana */
+    .navbar {
+      background: #ffffff;
+      border-bottom: 1px solid #eaeaea;
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-container {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: #2563eb;
+      letter-spacing: -0.3px;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 0.9rem;
+      background: #f3f4f6;
+      color: #374151;
+      text-decoration: none;
+      border-radius: 20px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+
+    .back-btn:hover {
+      background: #e5e7eb;
+    }
+
+    /* Container utama - lebar nyaman dibaca */
+    .container {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    /* Header artikel */
+    .blog-header {
+      margin-bottom: 2.5rem;
+    }
+
+    .blog-category {
+      display: inline-block;
+      background: #eef2ff;
+      color: #2563eb;
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .blog-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #111827;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+    }
+
+    .blog-meta {
+      display: flex;
+      gap: 1.2rem;
+      color: #6b7280;
+      font-size: 0.85rem;
+      border-bottom: 1px solid #eaeaea;
+      padding-bottom: 1.2rem;
+    }
+
+    /* Konten utama */
+    .blog-content {
+      background: transparent;
+    }
+
+    .blog-content h2 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin: 2rem 0 1rem;
+      color: #111827;
+      letter-spacing: -0.01em;
+      padding-top: 0.5rem;
+    }
+
+    .blog-content h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.75rem;
+      color: #1f2937;
+    }
+
+    .blog-content p {
+      margin-bottom: 1rem;
+      color: #2c3e2f;
+      font-size: 1rem;
+    }
+
+    .blog-content ul, .blog-content ol {
+      margin: 0.75rem 0 1rem 1.5rem;
+      color: #2c3e2f;
+    }
+
+    .blog-content li {
+      margin-bottom: 0.4rem;
+    }
+
+    /* Kotak informasi minimal */
+    .info-box {
+      background: #f8fafc;
+      border-left: 4px solid #3b82f6;
+      padding: 1rem 1.2rem;
+      margin: 1.5rem 0;
+      border-radius: 8px;
+    }
+
+    .tip-box {
+      background: #fefce8;
+      border-left: 4px solid #eab308;
+      padding: 1rem 1.2rem;
+      margin: 1.5rem 0;
+      border-radius: 8px;
+    }
+
+    .warning-box {
+      background: #fef2f2;
+      border-left: 4px solid #dc2626;
+      padding: 1rem 1.2rem;
+      margin: 1.5rem 0;
+      border-radius: 8px;
+    }
+
+    .info-box p, .tip-box p, .warning-box p {
+      margin-bottom: 0;
+    }
+
+    .info-box strong, .tip-box strong, .warning-box strong {
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    /* Code block styling */
+    pre {
+      background: #1e1e2f;
+      padding: 1.2rem;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 1.2rem 0;
+    }
+
+    code {
+      font-family: 'SF Mono', 'Menlo', 'Monaco', 'Cascadia Code', monospace;
+      font-size: 0.85rem;
+    }
+
+    :not(pre) > code {
+      background: #f0f2f5;
+      padding: 0.2rem 0.4rem;
+      border-radius: 5px;
+      font-size: 0.85rem;
+      color: #d14;
+    }
+
+    /* Tabel sederhana */
+    .table-wrapper {
+      overflow-x: auto;
+      margin: 1.2rem 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    th, td {
+      padding: 0.7rem 0.8rem;
+      text-align: left;
+      border: 1px solid #e2e8f0;
+    }
+
+    th {
+      background: #f1f5f9;
+      font-weight: 600;
+    }
+
+    /* Quiz section minimal */
+    .quiz-section {
+      background: #f9f9fb;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin: 2rem 0 1rem;
+    }
+
+    .quiz-question {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #edf2f7;
+    }
+
+    .quiz-question p {
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+    }
+
+    .quiz-option {
+      display: block;
+      margin: 0.4rem 0;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .quiz-option input {
+      margin-right: 0.6rem;
+    }
+
+    .quiz-btn {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 30px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 0.5rem;
+    }
+
+    .quiz-btn:hover {
+      background: #1d4ed8;
+    }
+
+    .quiz-result {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: #f1f5f9;
+      border-radius: 12px;
+      display: none;
+      font-size: 0.9rem;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: #6b7280;
+      font-size: 0.8rem;
+      border-top: 1px solid #eaeaea;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 1.2rem;
+      }
+      .blog-title {
+        font-size: 1.7rem;
+      }
+      .blog-meta {
+        flex-wrap: wrap;
+        gap: 0.8rem;
+      }
+      pre {
+        font-size: 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="#" class="logo">Belajar MySQL</a>
+    <a href="/" class="back-btn">← Kembali</a>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="blog-header">
+    <span class="blog-category">Database</span>
+    <h1 class="blog-title">Memahami MySQL: Panduan Lengkap untuk Pemula</h1>
+    <div class="blog-meta">
+      <span>📅 10 Januari 2024</span>
+      <span>⏱️ 15 menit baca</span>
+      <span>📖 Level: Pemula - Menengah</span>
+    </div>
+  </div>
+
+  <div class="blog-content">
+    <p>MySQL adalah sistem manajemen basis data relasional (RDBMS) sumber terbuka yang paling banyak digunakan di dunia. Dari aplikasi web sederhana hingga sistem enterprise kelas dunia, MySQL menjadi tulang punggung penyimpanan data. Artikel ini akan membawa Anda dari nol hingga mampu membuat dan mengelola database sendiri.</p>
+
+    <div class="info-box">
+      <strong>📌 Apa itu Database?</strong>
+      <p>Database adalah kumpulan data terstruktur. Bayangkan seperti lemari arsip digital yang menyimpan informasi penting secara teratur, cepat diakses, dan mudah dikelola.</p>
+    </div>
+
+    <h2>1. Mengapa MySQL Populer?</h2>
+    <ul>
+      <li><strong>Gratis & Open Source</strong> — Tanpa biaya lisensi, komunitas besar.</li>
+      <li><strong>Performa tinggi & handal</strong> — Cocok untuk skala kecil hingga besar.</li>
+      <li><strong>Mudah dipelajari</strong> — Menggunakan SQL standar.</li>
+      <li><strong>Dukungan luas</strong> — Dokumentasi lengkap dan banyak tutorial.</li>
+    </ul>
+
+    <h2>2. Konsep Dasar: Database, Tabel, Record</h2>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <th>Istilah</th><th>Penjelasan</th><th>Contoh Sederhana</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Database</strong></td><td>Kumpulan tabel yang saling terkait</td><td>sekolah, toko_online</td></tr>
+          <tr><td><strong>Table</strong></td><td>Kumpulan baris dan kolom</td><td>siswa, produk</td></tr>
+          <tr><td><strong>Row/Record</strong></td><td>Satu entri data lengkap</td><td>data Budi, umur 17</td></tr>
+          <tr><td><strong>Column/Field</strong></td><td>Jenis informasi spesifik</td><td>nama, alamat, harga</td></tr>
+          <tr><td><strong>Primary Key</strong></td><td>Penanda unik tiap baris</td><td>id_siswa, kode_produk</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>3. SQL Dasar: Manipulasi Data</h2>
+    <p>Berikut empat operasi utama (CRUD) yang wajib dikuasai.</p>
+
+    <h3>Membuat Database & Tabel</h3>
+    <pre><code class="sql">-- Buat database baru
+CREATE DATABASE universitas;
+
+-- Gunakan database
+USE universitas;
+
+-- Buat tabel mahasiswa
+CREATE TABLE mahasiswa (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nim VARCHAR(20) UNIQUE NOT NULL,
+    nama_lengkap VARCHAR(100) NOT NULL,
+    jurusan VARCHAR(50),
+    ipk DECIMAL(3,2) DEFAULT 0.00,
+    tanggal_daftar DATE
+);</code></pre>
+
+    <div class="tip-box">
+      <strong>💡 Tips Penting</strong>
+      <p>Gunakan AUTO_INCREMENT untuk kolom ID agar otomatis bertambah. Tambahkan UNIQUE untuk memastikan tidak ada data duplikat (misalnya NIM).</p>
+    </div>
+
+    <h3>Memasukkan Data (INSERT)</h3>
+    <pre><code class="sql">-- Tambah satu mahasiswa
+INSERT INTO mahasiswa (nim, nama_lengkap, jurusan, ipk, tanggal_daftar)
+VALUES ('2024001', 'Andi Saputra', 'Informatika', 3.75, '2024-08-01');
+
+-- Tambah banyak sekaligus
+INSERT INTO mahasiswa (nim, nama_lengkap, jurusan, ipk, tanggal_daftar) VALUES
+('2024002', 'Budi Wijaya', 'Sistem Informasi', 3.50, '2024-08-02'),
+('2024003', 'Citra Kirana', 'Informatika', 3.90, '2024-08-01'),
+('2024004', 'Dian Permatasari', 'Manajemen', 3.60, '2024-08-03');</code></pre>
+
+    <h3>Membaca Data (SELECT) — Contoh Beragam</h3>
+    <pre><code class="sql">-- Semua data
+SELECT * FROM mahasiswa;
+
+-- Kolom tertentu dengan alias
+SELECT nim AS NIM, nama_lengkap AS Nama, ipk FROM mahasiswa;
+
+-- Filter dengan WHERE
+SELECT * FROM mahasiswa WHERE jurusan = 'Informatika' AND ipk > 3.6;
+
+-- Pencarian teks
+SELECT * FROM mahasiswa WHERE nama_lengkap LIKE '%andi%';
+
+-- Sorting & limit
+SELECT * FROM mahasiswa ORDER BY ipk DESC LIMIT 3;</code></pre>
+
+    <h3>Memperbarui Data (UPDATE)</h3>
+    <pre><code class="sql">-- Update ipk mahasiswa dengan nim tertentu
+UPDATE mahasiswa 
+SET ipk = 3.80, jurusan = 'Teknik Komputer'
+WHERE nim = '2024001';
+
+-- Update banyak baris (hati2 dengan WHERE)
+UPDATE mahasiswa SET ipk = ipk + 0.05 WHERE jurusan = 'Informatika';</code></pre>
+
+    <div class="warning-box">
+      <strong>⚠️ Peringatan!</strong>
+      <p>Jika tidak menggunakan WHERE pada UPDATE atau DELETE, semua baris dalam tabel akan terpengaruh. Selalu cek kondisi sebelum mengeksekusi.</p>
+    </div>
+
+    <h3>Menghapus Data (DELETE)</h3>
+    <pre><code class="sql">-- Hapus satu mahasiswa
+DELETE FROM mahasiswa WHERE id = 4;
+
+-- Hapus berdasarkan kondisi
+DELETE FROM mahasiswa WHERE ipk < 2.0;</code></pre>
+
+    <h2>4. Relasi Antar Tabel (Contoh Praktis)</h2>
+    <p>Hubungan antar tabel membuat database lebih powerful. Misalnya di universitas:</p>
+
+    <h3>One-to-Many: Satu Dosen Mengajar Banyak Mata Kuliah</h3>
+    <pre><code class="sql">CREATE TABLE dosen (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nama_dosen VARCHAR(100) NOT NULL,
+    nip VARCHAR(20) UNIQUE
+);
+
+CREATE TABLE mata_kuliah (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    kode_mk VARCHAR(10) UNIQUE NOT NULL,
+    nama_mk VARCHAR(100) NOT NULL,
+    sks INT,
+    dosen_id INT,
+    FOREIGN KEY (dosen_id) REFERENCES dosen(id) ON DELETE SET NULL
+);</code></pre>
+
+    <h3>Many-to-Many: Mahasiswa Mengambil Banyak Mata Kuliah</h3>
+    <pre><code class="sql">-- Tabel penghubung (enrollment)
+CREATE TABLE krs (
+    mahasiswa_id INT,
+    mata_kuliah_id INT,
+    semester VARCHAR(10),
+    nilai_akhir CHAR(2),
+    PRIMARY KEY (mahasiswa_id, mata_kuliah_id),
+    FOREIGN KEY (mahasiswa_id) REFERENCES mahasiswa(id),
+    FOREIGN KEY (mata_kuliah_id) REFERENCES mata_kuliah(id)
+);</code></pre>
+
+    <h2>5. Query yang Sering Dipakai (Agregasi & JOIN)</h2>
+    <p>Data akan lebih bermakna dengan agregasi dan penggabungan tabel.</p>
+
+    <h3>Menghitung & Mengelompokkan</h3>
+    <pre><code class="sql">-- Jumlah mahasiswa per jurusan
+SELECT jurusan, COUNT(*) AS jumlah_mahasiswa
+FROM mahasiswa
+GROUP BY jurusan;
+
+-- Rata-rata IPK per jurusan (hanya jurusan dengan ipk > 3.4)
+SELECT jurusan, AVG(ipk) AS rata_ipk
+FROM mahasiswa
+GROUP BY jurusan
+HAVING rata_ipk > 3.4;
+
+-- Nilai maksimum dan minimum
+SELECT MAX(ipk) AS ipk_tertinggi, MIN(ipk) AS ipk_terendah FROM mahasiswa;</code></pre>
+
+    <h3>JOIN Tabel (Contoh Relasi)</h3>
+    <pre><code class="sql">-- Menampilkan KRS lengkap: nama mahasiswa, mata kuliah, dan nilai
+SELECT m.nama_lengkap, mk.nama_mk, k.nilai_akhir
+FROM mahasiswa m
+JOIN krs k ON m.id = k.mahasiswa_id
+JOIN mata_kuliah mk ON k.mata_kuliah_id = mk.id
+WHERE k.semester = 'GANJIL 2024';
+
+-- LEFT JOIN: semua dosen, meski tidak mengajar matkul
+SELECT d.nama_dosen, mk.nama_mk
+FROM dosen d
+LEFT JOIN mata_kuliah mk ON d.id = mk.dosen_id;</code></pre>
+
+    <h2>6. Studi Kasus: Sistem Peminjaman Buku Perpustakaan</h2>
+    <p>Mari terapkan dalam skenario nyata.</p>
+    <pre><code class="sql">CREATE DATABASE perpustakaan;
+USE perpustakaan;
+
+-- Buku
+CREATE TABLE buku (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    isbn VARCHAR(13) UNIQUE,
+    judul VARCHAR(200) NOT NULL,
+    penulis VARCHAR(100),
+    stok INT DEFAULT 1
+);
+
+-- Anggota
+CREATE TABLE anggota (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nama_anggota VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    tgl_daftar DATE DEFAULT (CURRENT_DATE)
+);
+
+-- Peminjaman
+CREATE TABLE peminjaman (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    anggota_id INT,
+    buku_id INT,
+    tgl_pinjam DATE NOT NULL,
+    tgl_kembali DATE,
+    FOREIGN KEY (anggota_id) REFERENCES anggota(id),
+    FOREIGN KEY (buku_id) REFERENCES buku(id)
+);
+
+-- Insert data contoh
+INSERT INTO buku (isbn, judul, penulis, stok) VALUES
+('9786020331957', 'Atomic Habits', 'James Clear', 3),
+('9786020331964', 'Deep Work', 'Cal Newport', 2);
+
+INSERT INTO anggota (nama_anggota, email) VALUES
+('Rina Oktavia', 'rina@email.com'),
+('Eko Prasetyo', 'eko@email.com');
+
+-- Peminjaman buku
+INSERT INTO peminjaman (anggota_id, buku_id, tgl_pinjam) VALUES
+(1, 1, '2024-01-10'),
+(2, 2, '2024-01-12');
+
+-- Query laporan peminjaman aktif
+SELECT a.nama_anggota, b.judul, p.tgl_pinjam
+FROM peminjaman p
+JOIN anggota a ON p.anggota_id = a.id
+JOIN buku b ON p.buku_id = b.id
+WHERE p.tgl_kembali IS NULL;</code></pre>
+
+    <h2>7. Praktik Terbaik (Best Practices)</h2>
+    <ul>
+      <li><strong>Gunakan nama tabel dan kolom yang jelas</strong> — hindari singkatan membingungkan.</li>
+      <li><strong>Selalu tentukan PRIMARY KEY</strong> untuk setiap tabel.</li>
+      <li><strong>Indeks pada kolom yang sering dicari</strong> — contoh: email, NIM.</li>
+      <li><strong>Backup rutin dengan <code>mysqldump</code></strong> untuk mencegah kehilangan data.</li>
+      <li><strong>Gunakan prepared statements</strong> pada aplikasi untuk menghindari SQL injection.</li>
+      <li><strong>Jangan sembarangan menghapus data</strong>, lebih baik tambahkan kolom <code>is_deleted</code> (soft delete).</li>
+    </ul>
+
+    <h2>8. Latihan Soal (Uji Pemahaman)</h2>
+    <div class="quiz-section">
+      <h3 style="margin-bottom: 1rem;">Tes Singkat</h3>
+      
+      <div class="quiz-question">
+        <p>1. Perintah SQL yang digunakan untuk mengambil data dari database adalah?</p>
+        <div class="quiz-options">
+          <label class="quiz-option"><input type="radio" name="q1" value="a"> A. GET</label>
+          <label class="quiz-option"><input type="radio" name="q1" value="b"> B. SELECT</label>
+          <label class="quiz-option"><input type="radio" name="q1" value="c"> C. EXTRACT</label>
+          <label class="quiz-option"><input type="radio" name="q1" value="d"> D. FETCH</label>
+        </div>
+      </div>
+
+      <div class="quiz-question">
+        <p>2. Fungsi PRIMARY KEY pada tabel adalah?</p>
+        <div class="quiz-options">
+          <label class="quiz-option"><input type="radio" name="q2" value="a"> A. Menyimpan data duplikat</label>
+          <label class="quiz-option"><input type="radio" name="q2" value="b"> B. Identifikasi unik untuk setiap baris</label>
+          <label class="quiz-option"><input type="radio" name="q2" value="c"> C. Menentukan tipe data kolom</label>
+          <label class="quiz-option"><input type="radio" name="q2" value="d"> D. Menghapus data otomatis</label>
+        </div>
+      </div>
+
+      <div class="quiz-question">
+        <p>3. Manakah JOIN yang menampilkan semua data dari tabel kiri dan data yang cocok dari tabel kanan?</p>
+        <div class="quiz-options">
+          <label class="quiz-option"><input type="radio" name="q3" value="a"> A. INNER JOIN</label>
+          <label class="quiz-option"><input type="radio" name="q3" value="b"> B. RIGHT JOIN</label>
+          <label class="quiz-option"><input type="radio" name="q3" value="c"> C. LEFT JOIN</label>
+          <label class="quiz-option"><input type="radio" name="q3" value="d"> D. FULL OUTER JOIN</label>
+        </div>
+      </div>
+
+      <div class="quiz-question">
+        <p>4. Apa yang terjadi jika Anda menjalankan <code>DELETE FROM mahasiswa;</code> tanpa WHERE?</p>
+        <div class="quiz-options">
+          <label class="quiz-option"><input type="radio" name="q4" value="a"> A. Menghapus satu baris pertama</label>
+          <label class="quiz-option"><input type="radio" name="q4" value="b"> B. Menghapus semua baris dalam tabel mahasiswa</label>
+          <label class="quiz-option"><input type="radio" name="q4" value="c"> C. Menampilkan error</label>
+          <label class="quiz-option"><input type="radio" name="q4" value="d"> D. Menghapus struktur tabel</label>
+        </div>
+      </div>
+
+      <button class="quiz-btn" onclick="checkQuiz()">Periksa Jawaban</button>
+      <div class="quiz-result" id="quizResult"></div>
+    </div>
+
+    <h2>Kesimpulan</h2>
+    <p>MySQL menyediakan fondasi kokoh untuk manajemen data. Dengan menguasai perintah dasar hingga relasi tabel, Anda sudah siap membangun aplikasi web, sistem informasi, atau proyek data apapun. Teruslah eksplorasi dengan studi kasus nyata seperti inventaris toko, sistem nilai, atau aplikasi catatan.</p>
+    
+    <div class="info-box">
+      <strong>📚 Rekomendasi Belajar Lanjutan</strong>
+      <ul style="margin-top: 0.3rem;">
+        <li>MySQL Official Documentation</li>
+        <li>W3Schools SQL Tutorial (interaktif)</li>
+        <li>Buku: "Learning MySQL" oleh O'Reilly</li>
+        <li>Channel YouTube: Web Programming UNPAS, Programmer Zaman Now</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <p>© 2024 · Belajar MySQL | Panduan Ringkas & Praktis</p>
+</footer>
+
+<script>
+  hljs.highlightAll();
+
+  function checkQuiz() {
+    const q1 = document.querySelector('input[name="q1"]:checked');
+    const q2 = document.querySelector('input[name="q2"]:checked');
+    const q3 = document.querySelector('input[name="q3"]:checked');
+    const q4 = document.querySelector('input[name="q4"]:checked');
+    
+    let score = 0;
+    let results = [];
+    
+    if (q1 && q1.value === 'b') { score++; results.push('✓ Soal 1: Benar (SELECT).'); }
+    else { results.push('✗ Soal 1: Jawaban benar adalah SELECT.'); }
+    
+    if (q2 && q2.value === 'b') { score++; results.push('✓ Soal 2: Benar (Identifikasi unik).'); }
+    else { results.push('✗ Soal 2: PRIMARY KEY = identifikasi unik tiap baris.'); }
+    
+    if (q3 && q3.value === 'c') { score++; results.push('✓ Soal 3: Benar (LEFT JOIN).'); }
+    else { results.push('✗ Soal 3: LEFT JOIN menampilkan semua data dari tabel kiri.'); }
+    
+    if (q4 && q4.value === 'b') { score++; results.push('✓ Soal 4: Benar (semua baris terhapus).'); }
+    else { results.push('✗ Soal 4: DELETE tanpa WHERE akan menghapus seluruh baris.'); }
+    
+    const resultDiv = document.getElementById('quizResult');
+    resultDiv.style.display = 'block';
+    resultDiv.innerHTML = `<strong>Skor: ${score}/4</strong><br><br>${results.join('<br>')}<br>${score === 4 ? '🎉 Mantap! Anda siap lanjut ke level berikutnya.' : '📖 Coba ulang materi dan latihan lagi ya.'}`;
+  }
+</script>
+
+</body>
+</html>
